@@ -19,9 +19,7 @@ public class Main {
 	
 		while(gameNo <= NUMBER_OF_GAMES){
 			Grid grid = new Grid();
-			
-			boolean copWinner = false;
-			
+
 			while(true) {
 			
 				long startTurnTime = System.nanoTime();//Measure time
