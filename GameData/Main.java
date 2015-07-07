@@ -26,7 +26,7 @@ public class Main {
 			
 				long startTurnTime = System.nanoTime();//Measure time
 				
-				int move1 = c.takeTurn();
+				int move1 = c.takeTurn(grid);
 				
 				if(System.nanoTime() - startTurnTime > MAX_TURN_TIME) {
 					System.out.println(c.getName() + " has been disqualified for taking more than 200 ms");
@@ -45,7 +45,7 @@ public class Main {
 							
 				startTurnTime = System.nanoTime();//Measure time
 							
-				int move2 = r.takeTurn();
+				int move2 = r.takeTurn(grid);
 				
 				if(System.nanoTime() - startTurnTime > MAX_TURN_TIME) {
 					System.out.println(r.getName() + " has been disqualified for taking more than 200 ms");
