@@ -17,7 +17,7 @@ public class Main {
 	
 	private void playGame(Cop c, Robber r) {
 	
-		while(gameNo <= NUMBER_PF_GAMES){
+		while(gameNo <= NUMBER_OF_GAMES){
 			Grid grid = new Grid();
 			
 			boolean copWinner = false;
