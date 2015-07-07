@@ -101,7 +101,7 @@ public class Grid {
 	/**
 	 * Finds the position of the Cop.
 	 */
-	private int[] findCop(int[][] grid) {
+	public int[] findCop(int[][] grid) {
 		for(int i=0; i<SIZE; i++)
 			for(int j=0; j<SIZE; j++)
 				if(grid[i][j] == COP)
@@ -115,7 +115,7 @@ public class Grid {
 	/**
 	 * Finds the position of the Robber.
 	 */
-	private int[] findRobber(int[][] grid) {
+	public int[] findRobber(int[][] grid) {
 		for(int i=0; i<SIZE; i++)
 			for(int j=0; j<SIZE; j++)
 				if(grid[i][j] == ROBBER)
@@ -144,7 +144,7 @@ public class Grid {
 					grid[pos[0]+1][pos[1]] = COP;
 				else if(direction == 4)
 					grid[pos[0]][pos[1]-1] = COP;
-			} else if(player == 1 ) 
+			} else if(player == 1) 
 			{
 				pos = findRobber(grid);
 				grid[pos[0]][pos[1]] = EMPTY;
