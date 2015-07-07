@@ -228,7 +228,7 @@ public class Grid {
 	}
 	
 	/*
-	 * Places a trap in the grid (Method never gets called, currently)
+	 * Places a trap in the grid (This method never gets called, currently)
 	 */
 	public void placeTrap(int direction){
 		int[] pos = findCop(grid);
