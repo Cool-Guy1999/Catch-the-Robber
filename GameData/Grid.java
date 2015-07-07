@@ -1,11 +1,11 @@
 public class Grid {
 
-	public final int SIZE = 7;
+	private final int SIZE = 7;
 	private int[][] grid;
-	public static final int EMPTY  = 0; 
-	public static final int TRAP   = -1;
-	public static final int ROBBER = 1;
-	public static final int COP    = 2;
+	private static final int EMPTY  = 0; 
+	private static final int TRAP   = -1;
+	private static final int ROBBER = 1;
+	private static final int COP    = 2;
 	
 	/**
 	 * Constructor initializes the grid
@@ -22,18 +22,8 @@ public class Grid {
 	}
 	
 	/**
-	 * Copy/Clone constructor (for cloning existing grid)
+	 * Prints the grid
 	 */
-	public Grid(Grid g){
-		grid = new int[SIZE][SIZE];
-		
-		for(int i=0;i<SIZE;i++){
-			for(int j=0;j<SIZE;j++){
-				this.grid[i][j] = g.grid[i][j];
-			}
-		}
-	}
-	
 	public void printGrid() {
 	
         for(int i=0; i<SIZE*4 + 1; i++)
@@ -72,19 +62,19 @@ public class Grid {
 	/**
 	 * Checks if the given move (cop) is valid
 	 */
-	public boolean isValidMove(Grid grid, int direction){
+	public boolean isValidMove(int direction){
 		if(direction < 0 || direction > 4)
 				return false;
 				
-		int[] pos = findCop(grid.grid);
+		int[] pos = findCop(grid);
 		
-		if(direction == 1 && ( pos[0]-1 < 0 || grid.grid[pos[0]-1][pos[1]] == TRAP) ) //UP
+		if(direction == 1 && ( pos[0]-1 < 0 || grid[pos[0]-1][pos[1]] == TRAP) ) //UP
 			return false;
-		if(direction == 2 && ( pos[1]+1 > 6 || grid.grid[pos[0]][pos[1]+1] == TRAP) ) //RIGHT
+		if(direction == 2 && ( pos[1]+1 > 6 || grid[pos[0]][pos[1]+1] == TRAP) ) //RIGHT
 			return false;
-		if(direction == 3 && ( pos[0]+1 > 6 || grid.grid[pos[0]+1][pos[1]] == TRAP) ) //DOWN
+		if(direction == 3 && ( pos[0]+1 > 6 || grid[pos[0]+1][pos[1]] == TRAP) ) //DOWN
 			return false;
-		if(direction == 4 && ( pos[1]-1 < 0 || grid.grid[pos[0]][pos[1]-1] == TRAP) ) //LEFT
+		if(direction == 4 && ( pos[1]-1 < 0 || grid[pos[0]][pos[1]-1] == TRAP) ) //LEFT
 			return false;
 		return true;
 	}
@@ -92,11 +82,11 @@ public class Grid {
 	/**
 	 * Checks if the given move (robber) is valid
 	 */
-	public boolean isValidPosition(Grid grid, int direction){
+	public boolean isValidPosition(int direction){
 		if(direction < 0 || direction > 4)
 				return false;
 				
-		int[] pos = findRobber(grid.grid);
+		int[] pos = findRobber(grid);
 		if(direction == 1 && pos[0]-1 < 0) //UP
 			return false;
 		if(direction == 2 && pos[1]+1 > 6) //RIGHT
@@ -111,7 +101,7 @@ public class Grid {
 	/**
 	 * Finds the position of the Cop.
 	 */
-	public int[] findCop(int[][] grid) {
+	private int[] findCop(int[][] grid) {
 		for(int i=0; i<SIZE; i++)
 			for(int j=0; j<SIZE; j++)
 				if(grid[i][j] == COP)
@@ -125,7 +115,7 @@ public class Grid {
 	/**
 	 * Finds the position of the Robber.
 	 */
-	public int[] findRobber(int[][] grid) {
+	private int[] findRobber(int[][] grid) {
 		for(int i=0; i<SIZE; i++)
 			for(int j=0; j<SIZE; j++)
 				if(grid[i][j] == ROBBER)
@@ -136,14 +126,9 @@ public class Grid {
 		return null; //Shut up compiler!
 	}
 	
-	public boolean gridChanged(Grid grid) {
-		for(int i=0; i < SIZE; i++)
-			for(int j=0; j < SIZE; j++)
-				if(this.grid[i][j] != grid.grid[i][j])
-					return true;
-		return false;
-	}
-	
+	/**
+	 * Updates the position of the cop and/or robber
+	 */
 	public void updateGrid(int direction, int player) {
 		int[] pos;
 		if(direction != 0){
@@ -179,6 +164,9 @@ public class Grid {
 		}
 	}
 	
+	/*
+	 * Checks the winner
+	 */
 	public boolean checkWinner(int direction, int player) {
 		if(direction == 0)
 			return false;
@@ -239,6 +227,9 @@ public class Grid {
 		return false;
 	}
 	
+	/*
+	 * Places a trap in the grid (Method never gets called, currently)
+	 */
 	public void placeTrap(int direction){
 		int[] pos = findCop(grid);
 		if(direction == 1) {
