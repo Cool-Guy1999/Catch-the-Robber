@@ -19,5 +19,5 @@ The challenge comes with a working example of a cop(_RandCop.java_) and a robber
 
 **What is the `(not working)` file for?**
 
-The file "_Main (not working).java_" is my failed attempt at implementing Traps. I know why is doesn't work, but I don't know how to correct it.
+The file "_Main (not working).java_" is my failed attempt at implementing Traps. I know why it doesn't work, but I don't know how to correct it.
 
